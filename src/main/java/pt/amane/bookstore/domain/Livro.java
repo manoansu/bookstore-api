@@ -1,14 +1,33 @@
 package pt.amane.bookstore.domain;
 
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 //@AllArgsConstructor
 //@NoArgsConstructor
-public class Livro {
+@Entity
+public class Livro implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String titulo;
+	
 	private String autor;
+	
 	private String testo;
 	
+	@ManyToOne
+	@JoinColumn(name = "categoria_id", nullable = false)
 	private Categoria categoria;
 	
 	public Livro() {}
