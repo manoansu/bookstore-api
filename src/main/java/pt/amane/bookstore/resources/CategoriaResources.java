@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javassist.tools.rmi.ObjectNotFoundException;
 import pt.amane.bookstore.domain.Categoria;
 import pt.amane.bookstore.service.CategoriaService;
 
@@ -18,7 +19,7 @@ public class CategoriaResources {
 	private CategoriaService service;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Categoria> findById(@PathVariable Integer id){
+	public ResponseEntity<Categoria> findById(@PathVariable Integer id) throws ObjectNotFoundException{
 		
 		Categoria obj = service.findById(id); // pega id vindo da tela..
 		return ResponseEntity.ok().body(obj);
