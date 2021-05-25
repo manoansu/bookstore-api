@@ -26,5 +26,10 @@ public class CategoriaService {
 	public List<Categoria> findAll(){
 		return cr.findAll();
 	}
+	
+	public Categoria create(Categoria obj) {
+		obj.setId(null); // facilita a não subescrever o id qd vais criar o novo objecto.
+		return cr.save(obj);
+	}
 
 }
