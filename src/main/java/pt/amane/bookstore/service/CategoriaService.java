@@ -42,4 +42,10 @@ public class CategoriaService {
 		return cr.save(obj);
 	}
 
+	public void delete(Integer id) throws ObjectNotFoundException {
+		
+		findById(id);
+		cr.deleteById(id);
+	}
+
 }
