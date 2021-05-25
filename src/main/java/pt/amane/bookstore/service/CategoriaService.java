@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 import pt.amane.bookstore.domain.Categoria;
+import pt.amane.bookstore.dtos.CategoriaDTO;
 import pt.amane.bookstore.repositories.CategoriaRepository;
 
 @Service
@@ -29,6 +30,15 @@ public class CategoriaService {
 	
 	public Categoria create(Categoria obj) {
 		obj.setId(null); // facilita a não subescrever o id qd vais criar o novo objecto.
+		return cr.save(obj);
+	}
+
+	public Categoria create(Integer id, CategoriaDTO oblDto) throws ObjectNotFoundException {
+		
+		Categoria obj = findById(id); // verifica se a id existe..
+		obj.setNome(oblDto.getNome());
+		obj.setDescricao(obj.getDescricao());
+		
 		return cr.save(obj);
 	}
 
