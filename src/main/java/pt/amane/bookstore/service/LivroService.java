@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import pt.amane.bookstore.domain.Categoria;
 import pt.amane.bookstore.domain.Livro;
+import pt.amane.bookstore.exception.ObjectNotFoundException;
 import pt.amane.bookstore.repositories.LivroRepository;
-import pt.amane.bookstore.service.exceptions.ObjectNotFoundException;
 
 @Service // injectar o livro resource
 public class LivroService {

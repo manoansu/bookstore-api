@@ -1,4 +1,4 @@
-package pt.amane.bookstore.exception;
+package pt.amane.bookstore.resource.exceptions;
 
 public class StandardError {
 
@@ -6,7 +6,7 @@ public class StandardError {
 
 	private Integer status;
 
-	private String messeger;
+	private String error;
 
 	public StandardError() {
 	}
@@ -15,7 +15,7 @@ public class StandardError {
 		super();
 		this.timestemp = timestemp;
 		this.status = status;
-		this.messeger = messeger;
+		this.error = messeger;
 	}
 
 	public Long getTimestemp() {
@@ -35,11 +35,11 @@ public class StandardError {
 	}
 
 	public String getMesseger() {
-		return messeger;
+		return error;
 	}
 
 	public void setMesseger(String messeger) {
-		this.messeger = messeger;
+		this.error = messeger;
 	}
 
 }

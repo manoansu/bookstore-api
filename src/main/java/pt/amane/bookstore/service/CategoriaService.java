@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 
 import pt.amane.bookstore.domain.Categoria;
 import pt.amane.bookstore.dtos.CategoriaDTO;
+import pt.amane.bookstore.exception.ObjectNotFoundException;
 import pt.amane.bookstore.repositories.CategoriaRepository;
-import pt.amane.bookstore.service.exceptions.DataIntegratedViolationException;
-import pt.amane.bookstore.service.exceptions.ObjectNotFoundException;
+import pt.amane.bookstore.resource.exceptions.DataIntegratedViolationException;
 
 @Service
 public class CategoriaService {

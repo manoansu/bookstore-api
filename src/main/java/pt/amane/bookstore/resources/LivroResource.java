@@ -4,8 +4,11 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -22,6 +25,8 @@ import pt.amane.bookstore.domain.Livro;
 import pt.amane.bookstore.dtos.LivroDTO;
 import pt.amane.bookstore.service.LivroService;
 
+@CrossOrigin("*") // que o nosso endpoint /livros de diversas fontes, por Ex: qd fizemos o Front
+					// end vai rodar na porta 402 do angular.
 @RestController // informa o spring que é um controlador rest..
 @RequestMapping(value = "/livros")
 public class LivroResource {
@@ -63,7 +68,7 @@ public class LivroResource {
 	 * @return
 	 */
 	@PutMapping(value = "/{id}") // endpoint id
-	public ResponseEntity<Livro> update(@PathVariable Integer id, @RequestBody Livro obj) {
+	public ResponseEntity<Livro> update(@PathVariable Integer id, @Valid @RequestBody Livro obj) {
 
 		Livro newObj = ls.update(id, obj); // o objecto newobj recebe o livro atualizado na classe LivroSewrvice..
 
@@ -74,7 +79,7 @@ public class LivroResource {
 	}
 
 	@PatchMapping(value = "/{id}") // endpoint id
-	public ResponseEntity<Livro> updatePatch(@PathVariable Integer id, @RequestBody Livro obj) {
+	public ResponseEntity<Livro> updatePatch(@PathVariable Integer id, @Valid @RequestBody Livro obj) {
 
 		Livro newObj = ls.update(id, obj); // o objecto newobj recebe o livro atualizado na classe LivroSewrvice..
 
@@ -85,17 +90,17 @@ public class LivroResource {
 
 	@PostMapping
 	public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Integer id_cat,
-			@RequestBody Livro obj) {
+			@Valid @RequestBody Livro obj) {
 
 		Livro newobj = ls.create(id_cat, obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}")
-				.buildAndExpand(newobj.getId()).toUri();// retorna o URI para user.. 
+				.buildAndExpand(newobj.getId()).toUri();// retorna o URI para user..
 		return ResponseEntity.created(uri).build();
 	}
-	
+
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Integer id){
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		ls.delete(id);
-		return ResponseEntity.noContent().build(); //retorna nehum conteudo..
+		return ResponseEntity.noContent().build(); // retorna nehum conteudo..
 	}
 }
