@@ -1,4 +1,4 @@
-package pt.amane.bookstore.exception;
+package pt.amane.bookstore.service.exceptions;
 
 
 public class ObjectNotFoundException extends RuntimeException{
