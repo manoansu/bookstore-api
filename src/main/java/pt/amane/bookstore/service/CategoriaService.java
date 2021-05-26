@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import javassist.tools.rmi.ObjectNotFoundException;
 import pt.amane.bookstore.domain.Categoria;
 import pt.amane.bookstore.dtos.CategoriaDTO;
 import pt.amane.bookstore.repositories.CategoriaRepository;
 import pt.amane.bookstore.service.exceptions.DataIntegratedViolationException;
+import pt.amane.bookstore.service.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -19,11 +19,12 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository cr;
 
-	public Categoria findById(Integer id) throws ObjectNotFoundException {
-		Optional<Categoria> obj = cr.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! " + id + " Tipo: " + Categoria.class.getName()));
+	public Categoria findById(Integer id) {
 
+		Optional<Categoria> obj = cr.findById(id); // pega o id vindo da classe do pacote resource..
+
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objecto não encontrado! id: " + id + " Tipo: " + Categoria.class.getName()));
 	}
 
 	public List<Categoria> findAll() {
