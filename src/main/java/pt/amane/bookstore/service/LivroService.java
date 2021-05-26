@@ -59,4 +59,9 @@ public class LivroService {
 		obj.setCategoria(cat);
 		return lr.save(obj);
 	}
+
+	public void delete(Integer id) {
+		Livro obj = findById(id); // validar se esse livro que estamos deletar existe usando findById(id)..
+		lr.delete(obj); //apenas deleta o objeto livro.
+	}
 }
