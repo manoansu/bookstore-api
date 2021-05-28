@@ -25,8 +25,9 @@ import pt.amane.bookstore.domain.Livro;
 import pt.amane.bookstore.dtos.LivroDTO;
 import pt.amane.bookstore.service.LivroService;
 
-@CrossOrigin("*") // que o nosso endpoint /livros de diversas fontes, por Ex: qd fizemos o Front
-					// end vai rodar na porta 402 do angular.
+//que o nosso endpoint /livros de diversas fontes, por Ex: qd fizemos o Front
+// end vai rodar na porta 402 do angular.
+@CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false") 
 @RestController // informa o spring que é um controlador rest..
 @RequestMapping(value = "/livros")
 public class LivroResource {
